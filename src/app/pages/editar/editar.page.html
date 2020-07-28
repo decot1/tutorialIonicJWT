@@ -1,21 +1,131 @@
-<app-header title="Editar Producto"></app-header>
+<app-header title="Editar registro"></app-header>
 <ion-content>
     <h3 class="ion-text-center">Rellena el Formulario</h3>
     <form #f="ngForm" (ngSubmit)="onUpdate()" novalidate>
         <ion-list lines="full" class="ion-no-margin ion-no-padding">
             <ion-item>
-                <ion-label position="floating">Nombre del Producto: <ion-text color="danger">*</ion-text>
+                <ion-label position="floating">Email <ion-text color="danger">*</ion-text>
                 </ion-label>
-                <ion-input required type="text" name="nombre" [(ngModel)]="producto.nombre"></ion-input>
+                <ion-input required type="text" name="email" [(ngModel)]="registro.email"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Nombre(s): <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="nombres" [(ngModel)]="registro.nombres"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label position="floating">Precio (en euros): <ion-text color="danger">*</ion-text>
+                <ion-label position="floating">Apellido Paterno <ion-text color="danger">*</ion-text>
                 </ion-label>
-                <ion-input required type="number" name="precio" [(ngModel)]="producto.precio"></ion-input>
+                <ion-input required type="text" name="apellidoPaterno" [(ngModel)]="registro.apellidoPaterno"></ion-input>
             </ion-item>
-
-
+            <ion-item>
+                <ion-label position="floating">Apellido Materno <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="apellidoMaterno" [(ngModel)]="registro.apellidoMaterno"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Sexo</ion-label>
+                <ion-select interface="popover" class="custom-options" [(ngModel)]="registro.sexo" name="sexo">
+                  <ion-select-option value="Masculino">Masculino</ion-select-option>
+                  <ion-select-option value="Femenino">Femenino</ion-select-option>
+                </ion-select>
+               </ion-item>
+               <ion-item>
+                <ion-label position="floating">Edad<ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="edad" [(ngModel)]="registro.edad"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Calle <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="calle" [(ngModel)]="registro.calle"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Numero <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required  type="text" name="numero" [(ngModel)]="registro.numero"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Colonia <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text"  name="colonia" [(ngModel)]="registro.colonia"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Seccion <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required  type="text" name="seccion" [(ngModel)]="registro.seccion"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Codigo Postal <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text"  name="codigoPostal" [(ngModel)]="registro.codigoPostal"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Municipio <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="municipio" [(ngModel)]="registro.municipio"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Estado <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required  type="text" name="estado" [(ngModel)]="registro.estado"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Especialidad <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required  type="text" name="especialidad" [(ngModel)]="registro.especialidad"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Numero de Contacto<ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="numeroContacto" [(ngModel)]="registro.numeroContacto"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Numero de Referencia <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="numeroReferencia" [(ngModel)]="registro.numeroReferencia"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="down" stacked>Foto Credencial Frontal <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input  required type="file" name="traseraFrontalCredencial" (change)="seleccionarFoto($event)" accept="image/*"  ></ion-input>
+           
+            </ion-item>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped" role="progressbar"  *ngIf="progreso > 0" type="indeterminate" [ngStyle]="{width:progreso+'%'}" attr.aria-valuenow="{{progreso}}"  aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <ion-item>
+                <ion-label position="down" stacked>Foto Credencial Trasera <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input  required type="file" name="parteTraseraCredencial" (change)="seleccionarFoto1($event)" accept="image/*"  ></ion-input>
+              
+            </ion-item>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped" role="progressbar"  *ngIf="progreso > 0" type="indeterminate" [ngStyle]="{width:progreso+'%'}" attr.aria-valuenow="{{progreso}}"  aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+         
+   
+            <ion-item>
+                <ion-label position="floating">Curp <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text"  name="curp" [(ngModel)]="registro.curp"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">No.SeguroSocial<ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input type="text"  name="seguroSocial" [(ngModel)]="registro.seguroSocial"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">No.Cuenta Bancaria<ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input  type="text"   name="cuentaBancaria" [(ngModel)]="registro.cuentaBancaria"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Nombre del Banco<ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="nombreBanco" [(ngModel)]="registro.nombreBanco"></ion-input>
+            </ion-item>
             <div class="ion-padding">
                 <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
                     <ion-icon name="create" slot="icon-only"></ion-icon>

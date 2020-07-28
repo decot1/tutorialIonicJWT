@@ -15,7 +15,7 @@ export class LoginPage implements OnInit {
   loginUsuario: LoginUsuario;
   nombreUsuario = '';
   password = '';
-
+  errMsj = '';
   isLogged = false;
 
   constructor(
@@ -40,10 +40,13 @@ export class LoginPage implements OnInit {
     this.authService.login(this.loginUsuario).subscribe(
       data => {
         this.tokenService.setToken(data.token);
+        this.tokenService.setUsername(data.nombreUsuario);
+        this.tokenService.setAuthorities(data.authorities);
         this.isLogged = true;
         this.router.navigate(['/']);
       },
       err => {
+        this.errMsj = err.error.message;
         this.presentToast(err.error.message);
       }
     );

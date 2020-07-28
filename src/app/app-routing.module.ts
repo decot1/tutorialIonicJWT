@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { ProductoGuardGuard as guard } from './guards/producto-guard.guard';
+import { RegGuardService  as guard } from './guards/reg-guard.service';
 
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminPageModule),
-    canActivate: [guard], data: {requiredRoles: ['admin']}
+    canActivate: [guard], data: {requiredRoles: ['admin', 'user']}
   },
   {
     path: 'user',
@@ -34,12 +34,12 @@ const routes: Routes = [
   {
     path: 'nuevo',
     loadChildren: () => import('./pages/nuevo/nuevo.module').then( m => m.NuevoPageModule),
-    canActivate: [guard], data: {requiredRoles: ['admin']}
+    canActivate: [guard], data: {requiredRoles: ['admin','user']}
   },
   {
     path: 'editar/:id',
     loadChildren: () => import('./pages/editar/editar.module').then( m => m.EditarPageModule),
-    canActivate: [guard], data: {requiredRoles: ['admin']}
+    canActivate: [guard], data: {requiredRoles: ['admin', 'user']}
   },
   {
     path: 'detalle/:id',

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoService } from 'src/app/services/producto.service';
-import { Producto } from 'src/app/models/producto';
+import { RegisterService } from '../../services/register.service';
+import { Register } from '../../models/regsiter';
 
+import { ToastController, AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-user',
   templateUrl: './user.page.html',
@@ -9,25 +10,78 @@ import { Producto } from 'src/app/models/producto';
 })
 export class UserPage implements OnInit {
 
-  productos: Producto[] = [];
+  registros: Register[] = [];
 
   constructor(
-    private productoService: ProductoService
+    private registerService: RegisterService,
+    private toastController: ToastController,
+    private alertController: AlertController
   ) { }
 
   ngOnInit() {
     this.cargar();
   }
 
+  ionViewWillEnter() {
+    this.cargar();
+  }
+
   cargar(): void {
-    this.productoService.lista().subscribe(
+    this.registerService.lista().subscribe(
       data => {
-        this.productos = data;
+        this.registros = data;
       },
       err => {
         console.log(err);
       }
     );
   }
+
+  borrar(id: number): void {
+    this.registerService.delete(id).subscribe(
+      data => {
+        this.presentToast(data.mensaje);
+        this.cargar();
+      },
+      err => {
+        this.presentToast(err.error.mensaje);
+      }
+    );
+  }
+
+  async presentToast(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000,
+      position: 'middle'
+    });
+    toast.present();
+  }
+
+  async borrarConfirm(id: number) {
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: '¿seguro que lo deseas eliminar?',
+      buttons: [
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.borrar(id);
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 
 }

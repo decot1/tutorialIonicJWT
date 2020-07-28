@@ -5,11 +5,20 @@
     <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
         <ion-list lines="full" class="ion-no-margin ion-no-padding">
             <ion-item>
-                <ion-label position="floating">Nombre: <ion-text color="danger">*</ion-text>
+                <ion-label position="floating">Nombre(s): <ion-text color="danger">*</ion-text>
                 </ion-label>
-                <ion-input required type="text" name="nombre" [(ngModel)]="nombre"></ion-input>
+                <ion-input required type="text" name="nombres" [(ngModel)]="nombres"></ion-input>
             </ion-item>
-
+            <ion-item>
+                <ion-label position="floating">Apellido Paterno: <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="apellidoPaterno" [(ngModel)]="apellidoPaterno"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Apellido Materno: <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="apellidoMaterno" [(ngModel)]="apellidoMaterno"></ion-input>
+            </ion-item>
             <ion-item>
                 <ion-label position="floating">Nombre de Usuario: <ion-text color="danger">*</ion-text>
                 </ion-label>
@@ -27,8 +36,49 @@
                 </ion-label>
                 <ion-input required type="password" name="password" [(ngModel)]="password"></ion-input>
             </ion-item>
-
-
+            <ion-item>
+                <ion-label position="floating">Calle: <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="calle" [(ngModel)]="calle"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Numero: <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="numero" [(ngModel)]="numero"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Colonia: <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="colonia" [(ngModel)]="colonia"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Seccion: <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="seccion" [(ngModel)]="seccion"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Codigo  Postal: <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="codigoPostal" [(ngModel)]="codigoPostal"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Municipio: <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="municipio" [(ngModel)]="municipio"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Estado: <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" name="estado" [(ngModel)]="estado"></ion-input>
+            </ion-item> 
+            <ion-item>
+                <ion-label position="floating">Privilegios</ion-label>
+                <ion-select interface="popover" class="custom-options" [(ngModel)]="roles" name="roles">
+                  <ion-select-option value="admin">Administrador</ion-select-option>
+                  <ion-select-option value="user">Encuestador</ion-select-option>
+                </ion-select>
+               </ion-item>
+                  
             <div class="ion-padding">
                 <ion-button color="success" expand="block" type="submit" class="ion-no-margin" [disabled]="!f.valid">
                     <ion-icon name="person-add" slot="icon-only"></ion-icon>
@@ -50,11 +100,11 @@
     </div>
     <ion-item-divider></ion-item-divider>
 
-    <div class="ion-text-center ion-padding">
+   <!-- <div class="ion-text-center ion-padding">
         <h4>¿Ya estás registrado?</h4>
         <ion-button color="tertiary" expand="block" class="ion-no-margin" routerLink="/login">
             <ion-icon name="log-in"  slot="icon-only"></ion-icon>
             Iniciar Sesión
         </ion-button>
-    </div>
+    </div>-->
 </ion-content>

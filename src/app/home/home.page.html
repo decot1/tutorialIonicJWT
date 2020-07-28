@@ -7,12 +7,15 @@
     </ion-toolbar>
   </ion-header> -->
 
+  
+
   <div id="container" *ngIf="!isLogged">
-    <strong>No has iniciado sesión</strong>
-    <p>Implementada con Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <strong>Bienvenido al Registro de 
+      Empleados de GRUCAI JOBS®</strong>
+    <p>Inicia Sesion Para Registrar </p>
   </div>
   <div id="container" *ngIf="isLogged">
     <strong>Bienvenido {{userName}}</strong>
-    <p>Implementada con Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <p>Pica en el menu de abajo </p>
   </div>
 </ion-content>

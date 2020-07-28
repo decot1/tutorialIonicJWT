@@ -1,25 +1,27 @@
 <app-header title="Detalle"></app-header>
 
-<ion-content *ngIf="producto">
+<ion-content *ngIf="registro">
     <ion-card>
         <ion-card-header>
-            <ion-card-title><strong>Nombre: </strong>{{producto.nombre}}</ion-card-title>
-            <ion-card-subtitle><strong>Precio: </strong>{{producto.precio}}€</ion-card-subtitle>
-
+            <ion-card-title><strong>Nombres: </strong>{{registro.nombres}}</ion-card-title>
+            <ion-card-subtitle><strong>Apellido Paterno: </strong>{{registro.apellidoPaterno}}</ion-card-subtitle>
+            <ion-card-subtitle><strong>Apellido Materno: </strong>{{registro.apellidoMaterno}}</ion-card-subtitle>
+            <ion-card-subtitle><strong>email: </strong>{{registro.email}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-header>
+            <ion-card-title><strong>Credencial Frontal</strong><img src="http://localhost:8080/Register/upload/credencialFrontal/img/{{registro.traseraFrontalCredencial}}" alt="{{registro.traseraFrontalCredencial}}" class="img-thumbnail rounded"></ion-card-title>
+            <ion-card-title><strong>Credencial Trasera</strong><img src="http://localhost:8080/Register/upload/credencialTrasera/img/{{registro.parteTraseraCredencial}}" alt="{{registro.parteTraseraCredencial}}" class="img-thumbnail rounded"></ion-card-title>
         </ion-card-header>
 
-        <ion-card-content class="ion-text-justify">
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore dolorem ratione excepturi non inventore? Cum id molestiae dolorem fugit earum minus impedit vero, nobis inventore facere. Repellendus quisquam exercitationem ipsum!
-        </ion-card-content>
     </ion-card>
-        <ion-button color="tertiary" expand="block" class="ion-margin-top ion-padding" (click)="volver()">
+      <ion-button color="tertiary" expand="block" class="ion-margin-top ion-padding" (click)="volver()">
             <ion-icon name="arrow-back-circle"  slot="icon-only"></ion-icon>
             Atrás
         </ion-button>
 
 </ion-content>
 
-<ion-content *ngIf="!producto">
+<ion-content *ngIf="!registro">
     <ion-card>
         <ion-card-header>
             <ion-card-title><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></ion-card-title>

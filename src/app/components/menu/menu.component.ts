@@ -31,7 +31,8 @@ export class MenuComponent implements OnInit {
 
   testLogged(): void {
     this.isLogged = this.tokenService.getToken()!= null;
-    this.isAdmin = this.tokenService.isAdmin();
+    //this.isAdmin = this.tokenService.isAdmin();
+    this.isAdmin = this.tokenService.getAuthorities().length > 1;
   }
 
 }

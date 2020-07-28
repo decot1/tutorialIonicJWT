@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoService } from 'src/app/services/producto.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Producto } from 'src/app/models/producto';
+import { Register } from '../../models/regsiter';
+import { RegisterService } from '../../services/register.service';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
@@ -11,10 +11,11 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class DetallePage implements OnInit {
 
-  producto: Producto;
-
+  
+  registro : Register;
+  
   constructor(
-    private productoService: ProductoService,
+    private registerService: RegisterService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private tokenService: TokenService
@@ -26,9 +27,9 @@ export class DetallePage implements OnInit {
 
   cargar(): void {
     const id = this.activatedRoute.snapshot.params.id;
-    this.productoService.detalle(id).subscribe(
+    this.registerService.detail(id).subscribe(
       data => {
-        this.producto = data;
+        this.registro = data;
       },
       err => {
         this.volver();

@@ -15,6 +15,7 @@ export class HomePage {
     private tokenService: TokenService
   ) {}
 
+
   ionViewWillEnter() {
     this.testLogged();
   }

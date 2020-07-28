@@ -6,6 +6,7 @@ import { TokenService } from 'src/app/services/token.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { concatMap } from 'rxjs/operators';
 import { LoginUsuario } from 'src/app/models/login-usuario';
+import { Roles } from '../../models/roles';
 
 @Component({
   selector: 'app-registro',
@@ -13,14 +14,26 @@ import { LoginUsuario } from 'src/app/models/login-usuario';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
+  isAdmin: boolean;
 
   nuevoUsuario: NuevoUsuario;
   loginUsuario: LoginUsuario;
-  nombre = '';
+   //roles: Roles;
+  nombres = '';
+  apellidoPaterno = '';
+  apellidoMaterno = ''; 
   nombreUsuario = '';
   email = '';
   password = '';
-
+  calle = '';
+  numero = '';
+  colonia = '';
+  seccion = '';
+  codigoPostal = '';
+  municipio = '';
+  estado = '';
+  roles = '';
+  rol = [];
   isLogged = false;
 
   constructor(
@@ -40,14 +53,20 @@ export class RegistroPage implements OnInit {
   }
 
   onRegister() {
-    this.nuevoUsuario = new NuevoUsuario(this.nombre, this.nombreUsuario, this.email, this.password);
+    const roles_usuario  = [];
+    roles_usuario.push(this.roles);
+    this.nuevoUsuario = new NuevoUsuario(this.nombres,this.apellidoPaterno,this.apellidoMaterno,this.nombreUsuario, this.email, this.password,this.calle,this.numero,
+    this.colonia,this.seccion,this.codigoPostal,this.municipio,this.estado, roles_usuario);
+    console.log(this.nuevoUsuario);
     this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.password);
+
     this.authService.registro(this.nuevoUsuario).pipe(concatMap (nuevoRes => this.authService.login(this.loginUsuario))).subscribe(
       data => {
         this.tokenService.setToken(data.token);
         this.isLogged = true;
+       
         this.presentToast('cuenta creada');
-        this.router.navigate(['/']);
+        //this.router.navigate(['/']);
       },
       err => {
         this.presentToast(err.error.mensaje);
@@ -56,10 +75,20 @@ export class RegistroPage implements OnInit {
   }
 
   vaciar() {
-    this.nombre = '';
+    this.nombres = '';
+    this.apellidoPaterno = '';
+    this.apellidoMaterno = '';
     this.nombreUsuario = '';
     this.email = '';
     this.password = '';
+    this.calle = '';
+    this.numero = '';
+    this.colonia = '';
+    this.seccion = '';
+    this.codigoPostal = '';
+    this.municipio = '';
+    this.estado = '';
+    this.roles = ''    
   }
 
   async presentToast(msj: string) {
@@ -80,5 +109,6 @@ export class RegistroPage implements OnInit {
   testLogged(): void {
     this.isLogged = this.tokenService.getToken() != null;
   }
+ 
 
 }

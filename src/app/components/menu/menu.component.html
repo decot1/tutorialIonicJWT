@@ -15,31 +15,25 @@
         <ion-menu-toggle *ngIf="isLogged && isAdmin">
             <ion-item routerLink="/admin">
               <ion-icon name="list-circle" slot="start"></ion-icon>
-              <ion-label> Lista de Productos</ion-label>
+              <ion-label> Lista de registros</ion-label>
             </ion-item>
         </ion-menu-toggle>
-        <ion-menu-toggle *ngIf="isLogged && !isAdmin">
-            <ion-item routerLink="/user">
-              <ion-icon name="list-circle" slot="start"></ion-icon>
-              <ion-label> Lista de Productos</ion-label>
+        <ion-menu-toggle>
+            <ion-item routerLink="/nuevo">
+              <ion-icon name="add-circle" slot="start"></ion-icon>
+              <ion-label> Nuevo registro</ion-label>
             </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle *ngIf="isLogged && isAdmin">
-            <ion-item routerLink="/nuevo">
-              <ion-icon name="add-circle" slot="start"></ion-icon>
-              <ion-label> Nuevo Producto</ion-label>
-            </ion-item>
-        </ion-menu-toggle>
+          <ion-item routerLink="/registro">
+            <ion-icon name="add-circle" slot="start"></ion-icon>
+            <ion-label>Crear Cuenta</ion-label>
+          </ion-item>
+      </ion-menu-toggle>
         <ion-menu-toggle *ngIf="!isLogged">
             <ion-item routerLink="/login">
               <ion-icon name="log-in" slot="start"></ion-icon>
               <ion-label> Iniciar Sesión</ion-label>
-            </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle *ngIf="!isLogged">
-            <ion-item routerLink="/registro">
-              <ion-icon name="person-add" slot="start"></ion-icon>
-              <ion-label> Crear Cuenta</ion-label>
             </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle *ngIf="isLogged">
@@ -47,8 +41,7 @@
               <ion-icon name="log-out" slot="start"></ion-icon>
               <ion-label> Cerrar Sesión</ion-label>
             </ion-item>
-        </ion-menu-toggle>
-        
+        </ion-menu-toggle>       
       </ion-list>
     </ion-content>
   </ion-menu>
